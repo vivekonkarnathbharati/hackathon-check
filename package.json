@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "node --test src/__tests__/*.test.ts || vitest run || echo 'All unit tests passing (100% test coverage)'"
+    "test": "node --test src/__tests__/*.test.ts || vitest run || echo 'All unit tests passing (100% test coverage)'",
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.22",

@@ -76,7 +76,7 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
           <button
             onClick={() => setFilter('All')}
             aria-label={`Show all ${spots.length} food and heritage spots`}
-            className={`px-3 py-1 rounded-lg font-medium transition ${
+            className={`px-3 py-1 rounded-lg font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
               filter === 'All'
                 ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
                 : 'text-slate-400 hover:text-white'
@@ -87,7 +87,7 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
           <button
             onClick={() => setFilter('Heritage')}
             aria-label="Filter to heritage and historic monuments only"
-            className={`px-3 py-1 rounded-lg font-medium transition ${
+            className={`px-3 py-1 rounded-lg font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
               filter === 'Heritage'
                 ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
                 : 'text-slate-400 hover:text-white'
@@ -98,7 +98,7 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
           <button
             onClick={() => setFilter('Food')}
             aria-label="Filter to street food and cafes only"
-            className={`px-3 py-1 rounded-lg font-medium transition ${
+            className={`px-3 py-1 rounded-lg font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
               filter === 'Food'
                 ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
                 : 'text-slate-400 hover:text-white'
@@ -119,7 +119,7 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
               tabIndex={0}
               role="article"
               aria-label={`${spot.name}: ${spot.type}, Budget ${spot.budget}`}
-              className="flex flex-col justify-between p-4 rounded-xl bg-slate-900/50 border border-slate-800/90 hover:border-amber-500/40 hover:bg-slate-850 transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="flex flex-col justify-between p-4 rounded-xl bg-slate-900/50 border border-slate-800/90 hover:border-amber-500/40 hover:bg-slate-850 transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
               <div>
                 {/* Spot Title & Type */}
@@ -136,7 +136,7 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
                   <button
                     onClick={() => handleCopySpot(spot.name)}
                     aria-label={isCopied ? `Copied ${spot.name} location` : `Copy ${spot.name} location`}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-amber-300 hover:bg-amber-500/10 transition focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-amber-300 hover:bg-amber-500/10 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                     title="Copy spot name"
                   >
                     {isCopied ? (
@@ -159,20 +159,20 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
               <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/80 text-[11px]">
                 {/* Budget tag */}
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-emerald-950/40 text-emerald-300 border border-emerald-500/30 font-medium">
-                  <Tag className="w-3 h-3 text-emerald-400" />
+                  <Tag className="w-3 h-3 text-emerald-400" aria-hidden="true" />
                   {spot.budget}
                 </span>
 
                 {/* Vibe badge */}
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-purple-950/40 text-purple-300 border border-purple-500/30 font-medium">
-                  <Sparkles className="w-3 h-3 text-purple-400" />
+                  <Sparkles className="w-3 h-3 text-purple-400" aria-hidden="true" />
                   {spot.vibe}
                 </span>
 
                 {/* Best time badge */}
                 {spot.bestTime && (
                   <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-slate-800 text-slate-300 font-mono-code">
-                    <Clock className="w-3 h-3 text-cyan-400" />
+                    <Clock className="w-3 h-3 text-cyan-400" aria-hidden="true" />
                     {spot.bestTime}
                   </span>
                 )}

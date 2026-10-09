@@ -49,7 +49,7 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
             onClick={() => setViewMode('cards')}
             aria-label="Switch matrix display to split cards view"
             aria-pressed={viewMode === 'cards'}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-medium transition ${
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
               viewMode === 'cards'
                 ? 'bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30'
                 : 'text-slate-400 hover:text-white'
@@ -61,7 +61,7 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
             onClick={() => setViewMode('table')}
             aria-label="Switch matrix display to structured table view"
             aria-pressed={viewMode === 'table'}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-medium transition ${
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
               viewMode === 'table'
                 ? 'bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30'
                 : 'text-slate-400 hover:text-white'
@@ -79,7 +79,7 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
           <div className="space-y-3">
             <div className="flex items-center justify-between px-2 py-1.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-emerald-300">
               <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
-                <ThumbsUp className="w-4 h-4 text-emerald-400" /> Recommended & Verified
+                <ThumbsUp className="w-4 h-4 text-emerald-400" aria-hidden="true" /> Recommended & Verified
               </span>
               <span className="text-[11px] font-mono-code bg-emerald-900/50 px-2 py-0.5 rounded text-emerald-200">
                 {recommended.length} Options
@@ -94,11 +94,11 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
                 >
                   <div className="flex items-start justify-between gap-2 mb-1.5">
                     <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true" />
                       {item.name}
                     </h4>
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-mono-code font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" aria-hidden="true" />
                       {item.score}
                     </span>
                   </div>
@@ -114,7 +114,7 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
           <div className="space-y-3">
             <div className="flex items-center justify-between px-2 py-1.5 rounded-xl bg-rose-950/30 border border-rose-500/30 text-rose-300">
               <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
-                <ThumbsDown className="w-4 h-4 text-rose-400" /> Avoid or Exercise Caution
+                <ThumbsDown className="w-4 h-4 text-rose-400" aria-hidden="true" /> Avoid or Exercise Caution
               </span>
               <span className="text-[11px] font-mono-code bg-rose-900/50 px-2 py-0.5 rounded text-rose-200">
                 {avoidOrCaution.length} Hazards
@@ -129,7 +129,7 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
                 >
                   <div className="flex items-start justify-between gap-2 mb-1.5">
                     <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                      <AlertOctagon className="w-4 h-4 text-rose-400 shrink-0" />
+                      <AlertOctagon className="w-4 h-4 text-rose-400 shrink-0" aria-hidden="true" />
                       {item.name}
                     </h4>
                   </div>
@@ -138,7 +138,7 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
                   </p>
                   <div className="pl-6">
                     <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-mono-code font-semibold bg-rose-950/60 text-rose-300 border border-rose-500/40">
-                      <ShieldAlert className="w-3 h-3 text-rose-400" /> Risk: {item.risk}
+                      <ShieldAlert className="w-3 h-3 text-rose-400" aria-hidden="true" /> Risk: {item.risk}
                     </span>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
                 <tr key={`rec-${idx}`} className="hover:bg-slate-800/40 transition">
                   <td className="px-4 py-3">
                     <span className="inline-flex items-center gap-1 text-emerald-400 font-bold">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> Recommended
+                      <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" /> Recommended
                     </span>
                   </td>
                   <td className="px-4 py-3 font-semibold text-white">{item.name}</td>
@@ -175,7 +175,7 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
                 <tr key={`avoid-${idx}`} className="hover:bg-slate-800/40 transition">
                   <td className="px-4 py-3">
                     <span className="inline-flex items-center gap-1 text-rose-400 font-bold">
-                      <AlertOctagon className="w-3.5 h-3.5" /> Caution / Avoid
+                      <AlertOctagon className="w-3.5 h-3.5" aria-hidden="true" /> Caution / Avoid
                     </span>
                   </td>
                   <td className="px-4 py-3 font-semibold text-white">{item.name}</td>

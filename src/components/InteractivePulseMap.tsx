@@ -299,7 +299,7 @@ export const InteractivePulseMap: React.FC<InteractivePulseMapProps> = ({ report
             <button
               onClick={() => setFilterType('all')}
               aria-label="Display all map telemetry pins"
-              className={`px-2.5 py-1 rounded-lg transition ${
+              className={`px-2.5 py-1 rounded-lg transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                 filterType === 'all'
                   ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
                   : 'text-slate-400 hover:text-white'
@@ -310,7 +310,7 @@ export const InteractivePulseMap: React.FC<InteractivePulseMapProps> = ({ report
             <button
               onClick={() => setFilterType('hazard')}
               aria-label="Filter map to display hazard and caution pins only"
-              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
+              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                 filterType === 'hazard'
                   ? 'bg-rose-500/20 text-rose-300 font-bold border border-rose-500/30'
                   : 'text-slate-400 hover:text-white'
@@ -322,7 +322,7 @@ export const InteractivePulseMap: React.FC<InteractivePulseMapProps> = ({ report
             <button
               onClick={() => setFilterType('safe')}
               aria-label="Filter map to display verified safe transit routes only"
-              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
+              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                 filterType === 'safe'
                   ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30'
                   : 'text-slate-400 hover:text-white'
@@ -334,7 +334,7 @@ export const InteractivePulseMap: React.FC<InteractivePulseMapProps> = ({ report
             <button
               onClick={() => setFilterType('culture')}
               aria-label="Filter map to display cultural heritage and food stops only"
-              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
+              className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                 filterType === 'culture'
                   ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
                   : 'text-slate-400 hover:text-white'

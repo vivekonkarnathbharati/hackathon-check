@@ -38,16 +38,16 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
     switch (mode.toLowerCase()) {
       case 'metro':
       case 'train':
-        return <Train className="w-4 h-4 text-cyan-400" />;
+        return <Train className="w-4 h-4 text-cyan-400" aria-hidden="true" />;
       case 'cab':
       case 'car':
       case 'taxi':
-        return <Car className="w-4 h-4 text-indigo-400" />;
+        return <Car className="w-4 h-4 text-indigo-400" aria-hidden="true" />;
       case 'bus':
-        return <Bus className="w-4 h-4 text-amber-400" />;
+        return <Bus className="w-4 h-4 text-amber-400" aria-hidden="true" />;
       case 'walk':
       default:
-        return <Footprints className="w-4 h-4 text-emerald-400" />;
+        return <Footprints className="w-4 h-4 text-emerald-400" aria-hidden="true" />;
     }
   };
 
@@ -115,7 +115,7 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
                     role="checkbox"
                     aria-checked={isDone}
                     aria-label={`Step ${step.step} via ${step.mode}: ${step.title}. Estimated time: ${step.eta}. ${isDone ? 'Completed' : 'Click to mark complete'}`}
-                    className={`cursor-pointer p-4 rounded-xl border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-400 ${
+                    className={`cursor-pointer p-4 rounded-xl border transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                       isDone
                         ? 'bg-slate-950/40 border-slate-800/60 opacity-60'
                         : 'bg-slate-900/60 border-slate-700/80 hover:border-emerald-500/40 hover:bg-slate-850'
@@ -130,9 +130,9 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
                           className="mt-0.5 text-slate-400 hover:text-emerald-400 transition"
                         >
                           {isDone ? (
-                            <CheckSquare className="w-4 h-4 text-emerald-400" />
+                            <CheckSquare className="w-4 h-4 text-emerald-400" aria-hidden="true" />
                           ) : (
-                            <Square className="w-4 h-4 text-slate-500" />
+                            <Square className="w-4 h-4 text-slate-500" aria-hidden="true" />
                           )}
                         </button>
 
@@ -161,7 +161,7 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
                       </div>
 
                       <span className="inline-flex items-center gap-1 text-[11px] font-mono-code font-semibold px-2 py-0.5 rounded bg-slate-800 text-cyan-300 shrink-0">
-                        <Clock className="w-3 h-3 text-cyan-400" />
+                        <Clock className="w-3 h-3 text-cyan-400" aria-hidden="true" />
                         {step.eta}
                       </span>
                     </div>
@@ -179,7 +179,7 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
         {/* Tactical Safe Route Recommendations (5 columns) */}
         <div className="lg:col-span-5 space-y-3">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-300 px-1 mb-2 flex items-center gap-1.5 text-cyan-400">
-            <ShieldCheck className="w-3.5 h-3.5" /> High-Safety Corridors ({safeRoutes.length})
+            <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" /> High-Safety Corridors ({safeRoutes.length})
           </div>
 
           <div className="space-y-2.5">
@@ -189,7 +189,7 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
                 className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/30 transition text-xs"
               >
                 <div className="p-1 rounded-full bg-cyan-500/10 text-cyan-400 mt-0.5 shrink-0">
-                  <ArrowRight className="w-3 h-3" />
+                  <ArrowRight className="w-3 h-3" aria-hidden="true" />
                 </div>
                 <p className="text-slate-200 leading-relaxed font-normal">
                   {route}

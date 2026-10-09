@@ -38,14 +38,14 @@ export const LiveAudioWave: React.FC<LiveAudioWaveProps> = ({ isRecording, onSto
           </span>
         </div>
         <div className="flex items-center gap-1">
-          <Mic className="w-4 h-4 text-cyan-400" />
+          <Mic className="w-4 h-4 text-cyan-400" aria-hidden="true" />
           <span className="text-xs font-mono-code font-bold tracking-wider text-white">
             AUDIO STREAM ACTIVE [{formatTime(seconds)}]
           </span>
         </div>
 
         {/* Animated Sound Waveform Bars */}
-        <div className="flex items-center gap-1 h-6 px-2">
+        <div className="flex items-center gap-1 h-6 px-2" aria-hidden="true">
           <span className="w-1 bg-cyan-400 rounded-full soundwave-bar" />
           <span className="w-1 bg-indigo-400 rounded-full soundwave-bar" />
           <span className="w-1 bg-cyan-300 rounded-full soundwave-bar" />
@@ -59,7 +59,7 @@ export const LiveAudioWave: React.FC<LiveAudioWaveProps> = ({ isRecording, onSto
 
       <button
         onClick={onStop}
-        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 transition"
+        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
       >
         Done Speaking
       </button>

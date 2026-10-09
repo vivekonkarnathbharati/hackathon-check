@@ -47,12 +47,12 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
   const getAlertIcon = (type: string) => {
     switch (type.toLowerCase()) {
       case 'traffic':
-        return <Car className="w-4 h-4 text-amber-400" />;
+        return <Car className="w-4 h-4 text-amber-400" aria-hidden="true" />;
       case 'weather':
-        return <CloudRain className="w-4 h-4 text-cyan-400" />;
+        return <CloudRain className="w-4 h-4 text-cyan-400" aria-hidden="true" />;
       case 'safety':
       default:
-        return <ShieldAlert className="w-4 h-4 text-rose-400" />;
+        return <ShieldAlert className="w-4 h-4 text-rose-400" aria-hidden="true" />;
     }
   };
 
@@ -61,19 +61,19 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
       case 'high':
         return (
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/40 animate-pulse">
-            <span className="w-1.5 h-1.5 rounded-full bg-rose-500" /> High Alert
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-500" aria-hidden="true" /> High Alert
           </span>
         );
       case 'medium':
         return (
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" /> Caution
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" aria-hidden="true" /> Caution
           </span>
         );
       default:
         return (
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Advisory
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" aria-hidden="true" /> Advisory
           </span>
         );
     }
@@ -163,11 +163,11 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
             </div>
             <div className="flex items-center justify-center sm:justify-start gap-2">
               {isSafe ? (
-                <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                <ShieldCheck className="w-5 h-5 text-emerald-400" aria-hidden="true" />
               ) : isCaution ? (
-                <AlertTriangle className="w-5 h-5 text-amber-400" />
+                <AlertTriangle className="w-5 h-5 text-amber-400" aria-hidden="true" />
               ) : (
-                <ShieldAlert className="w-5 h-5 text-rose-400" />
+                <ShieldAlert className="w-5 h-5 text-rose-400" aria-hidden="true" />
               )}
               <span className={`text-lg font-black tracking-wide ${scoreColor}`}>
                 {safetyLevel}
@@ -187,25 +187,25 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
         <div className="lg:col-span-7 flex flex-col justify-between h-full p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 mb-2">
-              <Activity className="w-4 h-4 text-cyan-400" /> Executive Pulse Summary
+              <Activity className="w-4 h-4 text-cyan-400" aria-hidden="true" /> Executive Pulse Summary
             </div>
             <p className="text-sm text-slate-200 leading-relaxed font-normal">
               {summary}
             </p>
           </div>
 
-          {/* Telemetry Micro Stats */}
+          {/* Telemetry Micro Stats with aria-live="polite" */}
           {quickStats && (
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-3 border-t border-slate-800/60 font-mono-code text-[11px]">
+            <div aria-live="polite" className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-3 border-t border-slate-800/60 font-mono-code text-[11px]">
               <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
                 <span className="text-slate-400 flex items-center gap-1">
-                  <Flame className="w-3 h-3 text-rose-400" /> Chaos Index
+                  <Flame className="w-3 h-3 text-rose-400" aria-hidden="true" /> Chaos Index
                 </span>
                 <span className="font-bold text-white text-xs">{quickStats.chaosIndex}/100</span>
               </div>
               <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
                 <span className="text-slate-400 flex items-center gap-1">
-                  <Clock className="w-3 h-3 text-amber-400" /> Peak Hour
+                  <Clock className="w-3 h-3 text-amber-400" aria-hidden="true" /> Peak Hour
                 </span>
                 <span className="font-bold text-amber-300 text-xs truncate block" title={quickStats.peakHoursWarning}>
                   {quickStats.peakHoursWarning.slice(0, 14)}...
@@ -213,7 +213,7 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
               </div>
               <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
                 <span className="text-slate-400 flex items-center gap-1">
-                  <CloudSun className="w-3 h-3 text-cyan-400" /> Weather
+                  <CloudSun className="w-3 h-3 text-cyan-400" aria-hidden="true" /> Weather
                 </span>
                 <span className="font-bold text-cyan-200 text-xs truncate block" title={quickStats.weatherCondition}>
                   {quickStats.weatherCondition}
@@ -221,7 +221,7 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
               </div>
               <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
                 <span className="text-slate-400 flex items-center gap-1">
-                  <PhoneCall className="w-3 h-3 text-emerald-400" /> Helpline
+                  <PhoneCall className="w-3 h-3 text-emerald-400" aria-hidden="true" /> Helpline
                 </span>
                 <span className="font-bold text-emerald-300 text-xs truncate block" title={quickStats.emergencyHelpline}>
                   {quickStats.emergencyHelpline.slice(0, 12)}
@@ -232,13 +232,13 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
         </div>
       </div>
 
-      {/* WARNING BANNERS: Smart Alerts */}
+      {/* WARNING BANNERS: Smart Alerts with aria-live="polite" */}
       <div className="mt-6 space-y-2.5">
         <div className="text-xs font-bold uppercase tracking-wider text-slate-400 px-1 flex items-center gap-1.5">
-          <AlertTriangle className="w-3.5 h-3.5 text-amber-400" /> Active Alert Stream ({smartAlerts.length})
+          <AlertTriangle className="w-3.5 h-3.5 text-amber-400" aria-hidden="true" /> Active Alert Stream ({smartAlerts.length})
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div aria-live="polite" className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {smartAlerts.map((alert: SmartAlert, idx: number) => {
             const isHigh = alert.severity?.toLowerCase() === 'high';
             const isMed = alert.severity?.toLowerCase() === 'medium';

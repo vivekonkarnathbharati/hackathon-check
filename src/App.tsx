@@ -125,7 +125,7 @@ export const App: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 animate-fade-in">
             <div className="flex items-start justify-between gap-3 p-4 rounded-2xl bg-rose-950/40 border border-rose-500/40 text-rose-200 shadow-xl backdrop-blur-md">
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-rose-400 mt-0.5 shrink-0" />
+                <AlertCircle className="w-5 h-5 text-rose-400 mt-0.5 shrink-0" aria-hidden="true" />
                 <div>
                   <h4 className="text-sm font-bold text-white mb-1">
                     Analysis Notice
@@ -139,13 +139,13 @@ export const App: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsKeyModalOpen(true)}
-                  className="px-3 py-1.5 rounded-xl text-xs font-bold bg-rose-500 text-white hover:bg-rose-400 transition"
+                  className="px-3 py-1.5 rounded-xl text-xs font-bold bg-rose-500 text-white hover:bg-rose-400 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                 >
                   Enter Key
                 </button>
                 <button
                   onClick={() => setError(null)}
-                  className="p-1 rounded-lg text-rose-400 hover:text-white transition"
+                  className="p-1 rounded-lg text-rose-400 hover:text-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                 >
                   ✕
                 </button>
@@ -164,9 +164,9 @@ export const App: React.FC = () => {
               <div className="relative z-10 flex flex-col items-center">
                 <div className="relative mb-6">
                   <div className="w-20 h-20 rounded-3xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center animate-pulse">
-                    <Cpu className="w-10 h-10 text-cyan-400" />
+                    <Cpu className="w-10 h-10 text-cyan-400" aria-hidden="true" />
                   </div>
-                  <span className="absolute -top-1 -right-1 flex h-4 w-4">
+                  <span className="absolute -top-1 -right-1 flex h-4 w-4" aria-hidden="true">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-4 w-4 bg-cyan-500"></span>
                   </span>
@@ -177,7 +177,7 @@ export const App: React.FC = () => {
                 </h3>
 
                 <p className="text-sm font-mono-code text-cyan-300 max-w-lg mb-6 flex items-center justify-center gap-2">
-                  <RefreshCw className="w-4 h-4 animate-spin text-cyan-400" />
+                  <RefreshCw className="w-4 h-4 animate-spin text-cyan-400" aria-hidden="true" />
                   {LOADING_STATUSES[loadingStep]}
                 </p>
 
@@ -221,14 +221,14 @@ export const App: React.FC = () => {
       <footer role="contentinfo" aria-label="ChaosGrid AI Footer" className="border-t border-slate-800/80 bg-slate-950/80 py-8 px-4 text-center text-xs text-slate-400">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Compass className="w-4 h-4 text-cyan-400" />
+            <Compass className="w-4 h-4 text-cyan-400" aria-hidden="true" />
             <span className="font-bold text-white tracking-wide">ChaosGrid AI</span>
             <span>• Built for PromptWars Hackathon</span>
           </div>
 
           <div className="flex items-center gap-4 text-slate-400">
             <span className="flex items-center gap-1 font-mono-code">
-              <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" /> Powered by Google Gemini 1.5 Flash
+              <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" aria-hidden="true" /> Powered by Google Gemini 1.5 Flash
             </span>
             <span>•</span>
             <span className="text-cyan-400 font-medium">Urban Exploration & Safety Center</span>

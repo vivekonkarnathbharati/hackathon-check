@@ -158,7 +158,7 @@ export const HeroInput: React.FC<HeroInputProps> = ({
                 role="button"
                 aria-pressed={isSelected}
                 aria-label={`Select Demo Preset: ${preset.title} - ${preset.subtitle}`}
-                className={`group relative text-left p-4 rounded-2xl border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
+                className={`group relative text-left p-4 rounded-2xl border transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                   isSelected
                     ? 'bg-gradient-to-br from-cyan-950/70 via-slate-900/90 to-purple-950/60 border-cyan-400 shadow-lg shadow-cyan-500/20 ring-1 ring-cyan-400'
                     : 'glass-panel hover:border-slate-600 hover:bg-slate-800/60 shadow-md'
@@ -176,9 +176,9 @@ export const HeroInput: React.FC<HeroInputProps> = ({
                       }`}
                       aria-hidden="true"
                     >
-                      {preset.id === 'pune-night-transit' && <Moon className="w-4 h-4" />}
-                      {preset.id === 'old-city-heritage-food' && <Compass className="w-4 h-4" />}
-                      {preset.id === 'monsoon-rush-hour' && <CloudRain className="w-4 h-4" />}
+                      {preset.id === 'pune-night-transit' && <Moon className="w-4 h-4" aria-hidden="true" />}
+                      {preset.id === 'old-city-heritage-food' && <Compass className="w-4 h-4" aria-hidden="true" />}
+                      {preset.id === 'monsoon-rush-hour' && <CloudRain className="w-4 h-4" aria-hidden="true" />}
                     </div>
                     <span className="text-[11px] font-mono-code font-bold uppercase tracking-wider text-slate-400 group-hover:text-cyan-300 transition">
                       {preset.tag}
@@ -226,14 +226,14 @@ export const HeroInput: React.FC<HeroInputProps> = ({
             rows={3}
             aria-label="Describe your messy urban situation, commute route, or exploration query"
             placeholder="Describe your messy urban reality... e.g., 'Stranded near central railway station at midnight with 2 friends, rain pouring down, looking for open safe chai stalls and how to avoid flooded underpasses...'"
-            className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-100 placeholder-slate-500 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-400 transition leading-relaxed font-sans"
+            className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-100 placeholder-slate-500 resize-none focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 transition leading-relaxed font-sans"
           />
 
           {inputPrompt && (
             <button
               onClick={() => setInputPrompt('')}
               aria-label="Clear input prompt"
-              className="absolute top-2 right-2 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              className="absolute top-2 right-2 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
               title="Clear input"
             >
               <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />
@@ -249,7 +249,7 @@ export const HeroInput: React.FC<HeroInputProps> = ({
               type="button"
               onClick={handleToggleVoice}
               aria-label={isRecording ? "Stop voice recording stream" : "Simulate voice note recording stream"}
-              className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border transition focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
+              className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                 isRecording
                   ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 animate-pulse'
                   : 'bg-slate-800/80 hover:bg-slate-750 text-slate-300 border-slate-700/80 hover:text-white'
@@ -270,7 +270,7 @@ export const HeroInput: React.FC<HeroInputProps> = ({
             onClick={() => onAnalyze()}
             disabled={isLoading || !inputPrompt.trim()}
             aria-label={isLoading ? "Decoding urban situation with Gemini" : "Analyze City Pulse with Google Gemini"}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-500 via-teal-400 to-indigo-600 text-slate-950 hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-cyan-300"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-500 via-teal-400 to-indigo-600 text-slate-950 hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
           >
             {isLoading ? (
               <>

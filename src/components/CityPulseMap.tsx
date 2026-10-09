@@ -62,7 +62,7 @@ export const CityPulseMap: React.FC<CityPulseMapProps> = ({ report }) => {
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
-            <Map className="w-5 h-5" />
+            <Map className="w-5 h-5" aria-hidden="true" />
           </div>
           <div>
             <h3 className="text-base font-bold text-white tracking-wide flex items-center gap-2">
@@ -78,7 +78,7 @@ export const CityPulseMap: React.FC<CityPulseMapProps> = ({ report }) => {
         <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono-code">
           <button
             onClick={() => setFilterLayer('all')}
-            className={`px-2.5 py-1 rounded-lg transition ${
+            className={`px-2.5 py-1 rounded-lg transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
               filterLayer === 'all'
                 ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
                 : 'text-slate-400 hover:text-white'
@@ -88,7 +88,7 @@ export const CityPulseMap: React.FC<CityPulseMapProps> = ({ report }) => {
           </button>
           <button
             onClick={() => setFilterLayer('safe')}
-            className={`px-2.5 py-1 rounded-lg transition ${
+            className={`px-2.5 py-1 rounded-lg transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
               filterLayer === 'safe'
                 ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30'
                 : 'text-slate-400 hover:text-white'
@@ -98,7 +98,7 @@ export const CityPulseMap: React.FC<CityPulseMapProps> = ({ report }) => {
           </button>
           <button
             onClick={() => setFilterLayer('food')}
-            className={`px-2.5 py-1 rounded-lg transition ${
+            className={`px-2.5 py-1 rounded-lg transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
               filterLayer === 'food'
                 ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
                 : 'text-slate-400 hover:text-white'
@@ -108,7 +108,7 @@ export const CityPulseMap: React.FC<CityPulseMapProps> = ({ report }) => {
           </button>
           <button
             onClick={() => setFilterLayer('hazard')}
-            className={`px-2.5 py-1 rounded-lg transition ${
+            className={`px-2.5 py-1 rounded-lg transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
               filterLayer === 'hazard'
                 ? 'bg-rose-500/20 text-rose-300 font-bold border border-rose-500/30'
                 : 'text-slate-400 hover:text-white'
