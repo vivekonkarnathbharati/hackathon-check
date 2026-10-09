@@ -49,12 +49,12 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
   };
 
   return (
-    <div className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl">
+    <section aria-label="Cultural Heritage and Hidden Food Gems" role="region" className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl">
       {/* Header & Filter Tabs */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400">
-            <Utensils className="w-5 h-5" />
+            <Utensils className="w-5 h-5" aria-hidden="true" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -72,9 +72,10 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
         </div>
 
         {/* Filter Pill Buttons */}
-        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs">
+        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs" role="group" aria-label="Cultural and food category filters">
           <button
             onClick={() => setFilter('All')}
+            aria-label={`Show all ${spots.length} food and heritage spots`}
             className={`px-3 py-1 rounded-lg font-medium transition ${
               filter === 'All'
                 ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
@@ -85,6 +86,7 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
           </button>
           <button
             onClick={() => setFilter('Heritage')}
+            aria-label="Filter to heritage and historic monuments only"
             className={`px-3 py-1 rounded-lg font-medium transition ${
               filter === 'Heritage'
                 ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
@@ -95,6 +97,7 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
           </button>
           <button
             onClick={() => setFilter('Food')}
+            aria-label="Filter to street food and cafes only"
             className={`px-3 py-1 rounded-lg font-medium transition ${
               filter === 'Food'
                 ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
@@ -107,20 +110,23 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
       </div>
 
       {/* Spot Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" role="region" aria-label="Curated spot list">
         {filteredSpots.map((spot, index) => {
           const isCopied = copiedName === spot.name;
           return (
             <div
               key={index}
-              className="flex flex-col justify-between p-4 rounded-xl bg-slate-900/50 border border-slate-800/90 hover:border-amber-500/40 hover:bg-slate-850 transition-all duration-200 group"
+              tabIndex={0}
+              role="article"
+              aria-label={`${spot.name}: ${spot.type}, Budget ${spot.budget}`}
+              className="flex flex-col justify-between p-4 rounded-xl bg-slate-900/50 border border-slate-800/90 hover:border-amber-500/40 hover:bg-slate-850 transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-amber-400"
             >
               <div>
                 {/* Spot Title & Type */}
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <div>
                     <span className="inline-flex items-center gap-1 text-[11px] font-mono-code font-bold uppercase tracking-wider text-amber-400">
-                      <Landmark className="w-3 h-3" /> {spot.type}
+                      <Landmark className="w-3 h-3" aria-hidden="true" /> {spot.type}
                     </span>
                     <h4 className="text-sm font-bold text-white group-hover:text-amber-200 transition mt-0.5">
                       {spot.name}
@@ -129,13 +135,14 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
 
                   <button
                     onClick={() => handleCopySpot(spot.name)}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-amber-300 hover:bg-amber-500/10 transition"
+                    aria-label={isCopied ? `Copied ${spot.name} location` : `Copy ${spot.name} location`}
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-amber-300 hover:bg-amber-500/10 transition focus:outline-none focus:ring-2 focus:ring-amber-400"
                     title="Copy spot name"
                   >
                     {isCopied ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <Check className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
                     ) : (
-                      <MapPin className="w-3.5 h-3.5" />
+                      <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
                     )}
                   </button>
                 </div>
@@ -174,6 +181,6 @@ export const CulturalFoodCard: React.FC<CulturalFoodCardProps> = ({ spots }) => 
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };

@@ -52,12 +52,12 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
   };
 
   return (
-    <div className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl">
+    <section aria-label="Actionable Transit and Route Plan" role="region" className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
-            <Navigation className="w-5 h-5" />
+            <Navigation className="w-5 h-5" aria-hidden="true" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -76,8 +76,8 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
 
         {/* Progress pill if transit steps exist */}
         {transitSteps && transitSteps.length > 0 && (
-          <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono-code text-slate-300">
-            <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+          <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono-code text-slate-300" aria-label={`Progress: ${Object.values(completedSteps).filter(Boolean).length} of ${transitSteps.length} steps completed`}>
+            <CheckCircle className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
             <span>
               {Object.values(completedSteps).filter(Boolean).length} / {transitSteps.length} Steps Completed
             </span>
@@ -90,7 +90,7 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
         <div className="lg:col-span-7 space-y-3">
           <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-300 px-1 mb-2">
             <span className="flex items-center gap-1.5 text-emerald-400">
-              <Sparkles className="w-3.5 h-3.5" /> Commuter Navigation Itinerary
+              <Sparkles className="w-3.5 h-3.5" aria-hidden="true" /> Commuter Navigation Itinerary
             </span>
             <span className="text-[11px] text-slate-400 lowercase font-normal">
               Click checkbox to mark leg complete
@@ -98,14 +98,24 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
           </div>
 
           {transitSteps && transitSteps.length > 0 ? (
-            <div className="space-y-3">
+            <div className="space-y-3" role="group" aria-label="Transit checklist legs">
               {transitSteps.map((step) => {
                 const isDone = Boolean(completedSteps[step.step]);
                 return (
                   <div
                     key={step.step}
                     onClick={() => toggleStep(step.step)}
-                    className={`cursor-pointer p-4 rounded-xl border transition-all duration-200 ${
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleStep(step.step);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="checkbox"
+                    aria-checked={isDone}
+                    aria-label={`Step ${step.step} via ${step.mode}: ${step.title}. Estimated time: ${step.eta}. ${isDone ? 'Completed' : 'Click to mark complete'}`}
+                    className={`cursor-pointer p-4 rounded-xl border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-400 ${
                       isDone
                         ? 'bg-slate-950/40 border-slate-800/60 opacity-60'
                         : 'bg-slate-900/60 border-slate-700/80 hover:border-emerald-500/40 hover:bg-slate-850'
@@ -115,6 +125,8 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
                       <div className="flex items-start gap-3">
                         <button
                           type="button"
+                          aria-hidden="true"
+                          tabIndex={-1}
                           className="mt-0.5 text-slate-400 hover:text-emerald-400 transition"
                         >
                           {isDone ? (
@@ -187,6 +199,6 @@ export const ActionableTransitCard: React.FC<ActionableTransitCardProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

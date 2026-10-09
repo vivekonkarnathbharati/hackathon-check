@@ -270,12 +270,12 @@ export const InteractivePulseMap: React.FC<InteractivePulseMapProps> = ({ report
   const tileAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
   return (
-    <div className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl relative overflow-hidden">
+    <section aria-label="Interactive Geospatial Navigation Radar" role="region" className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl relative overflow-hidden">
       {/* Map Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
-            <Compass className="w-5 h-5 animate-spin-slow" />
+            <Compass className="w-5 h-5 animate-spin-slow" aria-hidden="true" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -295,9 +295,10 @@ export const InteractivePulseMap: React.FC<InteractivePulseMapProps> = ({ report
         {/* Action Controls & Layer Filters */}
         <div className="flex flex-wrap items-center gap-2">
           {/* Filter Pills */}
-          <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono-code">
+          <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono-code" role="group" aria-label="Map Marker Filters">
             <button
               onClick={() => setFilterType('all')}
+              aria-label="Display all map telemetry pins"
               className={`px-2.5 py-1 rounded-lg transition ${
                 filterType === 'all'
                   ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
@@ -308,35 +309,38 @@ export const InteractivePulseMap: React.FC<InteractivePulseMapProps> = ({ report
             </button>
             <button
               onClick={() => setFilterType('hazard')}
+              aria-label="Filter map to display hazard and caution pins only"
               className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
                 filterType === 'hazard'
                   ? 'bg-rose-500/20 text-rose-300 font-bold border border-rose-500/30'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500" aria-hidden="true" />
               Hazards
             </button>
             <button
               onClick={() => setFilterType('safe')}
+              aria-label="Filter map to display verified safe transit routes only"
               className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
                 filterType === 'safe'
                   ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
               Safe Routes
             </button>
             <button
               onClick={() => setFilterType('culture')}
+              aria-label="Filter map to display cultural heritage and food stops only"
               className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
                 filterType === 'culture'
                   ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" aria-hidden="true" />
               Culture & Food
             </button>
           </div>
@@ -452,6 +456,6 @@ export const InteractivePulseMap: React.FC<InteractivePulseMapProps> = ({ report
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

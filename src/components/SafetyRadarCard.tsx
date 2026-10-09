@@ -80,12 +80,12 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
   };
 
   return (
-    <div className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl relative overflow-hidden">
+    <section aria-label="Safety and Real-Time Alert Radar" role="region" className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl relative overflow-hidden">
       {/* Top Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
-            <Radio className="w-5 h-5 animate-spin-slow" />
+            <Radio className="w-5 h-5 animate-spin-slow" aria-hidden="true" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -103,8 +103,8 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
         </div>
 
         {/* Live Pulse Beacon */}
-        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs">
-          <span className="relative flex h-2 w-2">
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs" aria-label={`Current location: ${report.city}, status real-time feed`}>
+          <span className="relative flex h-2 w-2" aria-hidden="true">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
           </span>
@@ -119,8 +119,8 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
         {/* Radar Gauge & Level (5 columns) */}
         <div className="lg:col-span-5 flex flex-col sm:flex-row items-center gap-6 p-4 rounded-xl bg-slate-900/60 border border-slate-800/80">
           {/* Radial SVG Gauge */}
-          <div className="relative flex items-center justify-center">
-            <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+          <div className="relative flex items-center justify-center" role="meter" aria-valuenow={safetyScore} aria-valuemin={0} aria-valuemax={100} aria-label={`Urban Safety Score: ${safetyScore} out of 100, rating: ${safetyLevel}`}>
+            <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100" aria-hidden="true">
               {/* Background Track */}
               <circle
                 cx="50"
@@ -269,6 +269,6 @@ export const SafetyRadarCard: React.FC<SafetyRadarCardProps> = ({ report }) => {
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 };

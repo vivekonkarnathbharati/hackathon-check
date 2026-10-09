@@ -21,12 +21,12 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
   const { recommended, avoidOrCaution } = matrix;
 
   return (
-    <div className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl">
+    <section aria-label="Best versus Worst Comparison Matrix" role="region" className="rounded-2xl glass-panel p-5 sm:p-6 border border-slate-800 shadow-xl">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">
-            <Scale className="w-5 h-5" />
+            <Scale className="w-5 h-5" aria-hidden="true" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -44,26 +44,30 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
         </div>
 
         {/* View Toggle */}
-        <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs">
+        <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs" role="group" aria-label="Matrix view mode">
           <button
             onClick={() => setViewMode('cards')}
+            aria-label="Switch matrix display to split cards view"
+            aria-pressed={viewMode === 'cards'}
             className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-medium transition ${
               viewMode === 'cards'
                 ? 'bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            <LayoutGrid className="w-3.5 h-3.5" /> Split Cards
+            <LayoutGrid className="w-3.5 h-3.5" aria-hidden="true" /> Split Cards
           </button>
           <button
             onClick={() => setViewMode('table')}
+            aria-label="Switch matrix display to structured table view"
+            aria-pressed={viewMode === 'table'}
             className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-medium transition ${
               viewMode === 'table'
                 ? 'bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            <TableIcon className="w-3.5 h-3.5" /> Table View
+            <TableIcon className="w-3.5 h-3.5" aria-hidden="true" /> Table View
           </button>
         </div>
       </div>
@@ -187,6 +191,6 @@ export const ComparisonMatrixCard: React.FC<ComparisonMatrixCardProps> = ({ matr
           </table>
         </div>
       )}
-    </div>
+    </section>
   );
 };

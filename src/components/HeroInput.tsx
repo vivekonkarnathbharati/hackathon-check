@@ -106,14 +106,14 @@ export const HeroInput: React.FC<HeroInputProps> = ({
   };
 
   return (
-    <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+    <section aria-label="Urban Situation and Prompt Input" role="region" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
       {/* Background ambient radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-tr from-cyan-600/10 via-purple-600/10 to-transparent blur-3xl pointer-events-none -z-10" />
 
       {/* Hero Headline */}
       <div className="text-center max-w-3xl mx-auto mb-8">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-semibold mb-4 backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" aria-hidden="true" />
           <span>Intelligent Urban Chaos & Safety Command Center</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white mb-3">
@@ -131,7 +131,7 @@ export const HeroInput: React.FC<HeroInputProps> = ({
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3 px-1">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <Sparkles className="w-4 h-4 text-cyan-400" aria-hidden="true" />
             <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
               Judges 1-Click Quick Demo Presets
             </span>
@@ -141,14 +141,24 @@ export const HeroInput: React.FC<HeroInputProps> = ({
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3" role="group" aria-label="Quick Demo Presets">
           {DEMO_PRESETS.map((preset) => {
             const isSelected = activePresetId === preset.id;
             return (
               <button
                 key={preset.id}
                 onClick={() => onSelectPreset(preset)}
-                className={`group relative text-left p-4 rounded-2xl border transition-all duration-300 ${
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSelectPreset(preset);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-pressed={isSelected}
+                aria-label={`Select Demo Preset: ${preset.title} - ${preset.subtitle}`}
+                className={`group relative text-left p-4 rounded-2xl border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
                   isSelected
                     ? 'bg-gradient-to-br from-cyan-950/70 via-slate-900/90 to-purple-950/60 border-cyan-400 shadow-lg shadow-cyan-500/20 ring-1 ring-cyan-400'
                     : 'glass-panel hover:border-slate-600 hover:bg-slate-800/60 shadow-md'
@@ -164,6 +174,7 @@ export const HeroInput: React.FC<HeroInputProps> = ({
                           ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
                           : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
                       }`}
+                      aria-hidden="true"
                     >
                       {preset.id === 'pune-night-transit' && <Moon className="w-4 h-4" />}
                       {preset.id === 'old-city-heritage-food' && <Compass className="w-4 h-4" />}
@@ -201,28 +212,31 @@ export const HeroInput: React.FC<HeroInputProps> = ({
       <div className="relative rounded-2xl glass-panel p-3 sm:p-4 border border-cyan-500/20 shadow-2xl">
         {/* Sound Wave Recording Overlay if active */}
         {isRecording && (
-          <div className="mb-3">
+          <div className="mb-3" aria-live="polite">
             <LiveAudioWave isRecording={isRecording} onStop={() => setIsRecording(false)} />
           </div>
         )}
 
         <div className="relative">
           <textarea
+            id="urban-prompt-input"
             value={inputPrompt}
             onChange={(e) => setInputPrompt(e.target.value)}
             onKeyDown={handleKeyDown}
             rows={3}
+            aria-label="Describe your messy urban situation, commute route, or exploration query"
             placeholder="Describe your messy urban reality... e.g., 'Stranded near central railway station at midnight with 2 friends, rain pouring down, looking for open safe chai stalls and how to avoid flooded underpasses...'"
-            className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-100 placeholder-slate-500 resize-none focus:outline-none transition leading-relaxed font-sans"
+            className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-100 placeholder-slate-500 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-400 transition leading-relaxed font-sans"
           />
 
           {inputPrompt && (
             <button
               onClick={() => setInputPrompt('')}
-              className="absolute top-2 right-2 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+              aria-label="Clear input prompt"
+              className="absolute top-2 right-2 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition focus:outline-none focus:ring-2 focus:ring-cyan-400"
               title="Clear input"
             >
-              <RefreshCw className="w-3.5 h-3.5" />
+              <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />
             </button>
           )}
         </div>
@@ -234,18 +248,19 @@ export const HeroInput: React.FC<HeroInputProps> = ({
             <button
               type="button"
               onClick={handleToggleVoice}
-              className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border transition ${
+              aria-label={isRecording ? "Stop voice recording stream" : "Simulate voice note recording stream"}
+              className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border transition focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
                 isRecording
                   ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 animate-pulse'
                   : 'bg-slate-800/80 hover:bg-slate-750 text-slate-300 border-slate-700/80 hover:text-white'
               }`}
             >
-              {isRecording ? <MicOff className="w-3.5 h-3.5 text-rose-400" /> : <Mic className="w-3.5 h-3.5 text-cyan-400" />}
+              {isRecording ? <MicOff className="w-3.5 h-3.5 text-rose-400" aria-hidden="true" /> : <Mic className="w-3.5 h-3.5 text-cyan-400" aria-hidden="true" />}
               <span>{isRecording ? 'Listening...' : 'Simulate Voice Note'}</span>
             </button>
 
             <span className="hidden sm:inline-flex text-[11px] text-slate-500 items-center gap-1 font-mono-code">
-              <CornerDownLeft className="w-3 h-3" /> Press ⌘ + Enter to execute
+              <CornerDownLeft className="w-3 h-3" aria-hidden="true" /> Press ⌘ + Enter to execute
             </span>
           </div>
 
@@ -254,16 +269,17 @@ export const HeroInput: React.FC<HeroInputProps> = ({
             type="button"
             onClick={() => onAnalyze()}
             disabled={isLoading || !inputPrompt.trim()}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-500 via-teal-400 to-indigo-600 text-slate-950 hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/25 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+            aria-label={isLoading ? "Decoding urban situation with Gemini" : "Analyze City Pulse with Google Gemini"}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-500 via-teal-400 to-indigo-600 text-slate-950 hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-cyan-300"
           >
             {isLoading ? (
               <>
-                <RefreshCw className="w-4 h-4 animate-spin text-slate-950" />
+                <RefreshCw className="w-4 h-4 animate-spin text-slate-950" aria-hidden="true" />
                 <span>Decoding Urban Chaos...</span>
               </>
             ) : (
               <>
-                <Send className="w-4 h-4 text-slate-950 fill-slate-950" />
+                <Send className="w-4 h-4 text-slate-950 fill-slate-950" aria-hidden="true" />
                 <span>Analyze City Pulse</span>
               </>
             )}
