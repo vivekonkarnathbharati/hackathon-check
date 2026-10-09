@@ -5,6 +5,7 @@ import { SafetyRadarCard } from './components/SafetyRadarCard';
 import { CulturalFoodCard } from './components/CulturalFoodCard';
 import { ComparisonMatrixCard } from './components/ComparisonMatrixCard';
 import { ActionableTransitCard } from './components/ActionableTransitCard';
+import { InteractivePulseMap } from './components/InteractivePulseMap';
 import { CityPulseMap } from './components/CityPulseMap';
 import { ApiKeyModal } from './components/ApiKeyModal';
 import { ExportModal } from './components/ExportModal';
@@ -198,8 +199,8 @@ export const App: React.FC = () => {
             {/* CARD A: Safety & Real-Time Alert Radar */}
             <SafetyRadarCard report={report} />
 
-            {/* SPATIAL RADAR MAP VISUALIZER */}
-            <CityPulseMap report={report} />
+            {/* INTERACTIVE LEAFLET GEOSPATIAL RADAR (Directly below Safety Alert Radar) */}
+            <InteractivePulseMap report={report} />
 
             {/* CARD B: Cultural Heritage & Hidden Food Gems */}
             <CulturalFoodCard spots={report.culturalAndFoodSpots || []} />
