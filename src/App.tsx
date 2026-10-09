@@ -173,7 +173,7 @@ export const App: React.FC = () => {
                 </div>
 
                 <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
-                  CityPulse Neural Radar in Action
+                  ChaosGrid Neural Radar in Action
                 </h3>
 
                 <p className="text-sm font-mono-code text-cyan-300 max-w-lg mb-6 flex items-center justify-center gap-2">
@@ -222,7 +222,7 @@ export const App: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Compass className="w-4 h-4 text-cyan-400" />
-            <span className="font-bold text-white tracking-wide">CityPulse AI</span>
+            <span className="font-bold text-white tracking-wide">ChaosGrid AI</span>
             <span>• Built for PromptWars Hackathon</span>
           </div>
 

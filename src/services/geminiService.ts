@@ -1,7 +1,7 @@
 import { CityPulseReport } from '../types';
 import { DEMO_PRESETS } from './demoPresets';
 
-const SYSTEM_INSTRUCTION = `You are CityPulse AI, an elite real-time urban exploration, safety command center, and chaos navigation engine.
+const SYSTEM_INSTRUCTION = `You are ChaosGrid AI, an elite real-time urban exploration, safety command center, and chaos navigation engine.
 Your mission is to analyze unstructured, messy human inputs (commuter complaints, late-night travel worries, heritage food cravings, monsoon flood alarms, transit queries) and synthesize them into high-precision, actionable urban intelligence.
 
 You must respond STRICTLY with a valid JSON object matching this exact schema:
@@ -526,7 +526,7 @@ export async function analyzeCityPulseWithGemini(
         const message =
           errorData?.error?.message ||
           `HTTP ${response.status}: ${response.statusText}`;
-        console.warn(`[CityPulse AI] Attempt with model '${cleanModel}' returned:`, message);
+        console.warn(`[ChaosGrid AI] Attempt with model '${cleanModel}' returned:`, message);
         lastError = new Error(message);
         continue; // Try next model in fallback sequence
       }
@@ -568,7 +568,7 @@ export async function analyzeCityPulseWithGemini(
       // Successfully retrieved live structured Gemini response!
       return parsed;
     } catch (err: any) {
-      console.warn(`[CityPulse AI] Error invoking '${cleanModel}':`, err?.message || err);
+      console.warn(`[ChaosGrid AI] Error invoking '${cleanModel}':`, err?.message || err);
       lastError = err;
       // Continue to next model in sequence
     }
@@ -578,7 +578,7 @@ export async function analyzeCityPulseWithGemini(
   // If all live API attempts fail (quota, 404, invalid key, or network), seamlessly fall back
   // to intelligent realistic structured mock data matching our TypeScript schema so the user never sees a red error box.
   console.info(
-    '[CityPulse AI] Live Gemini calls exhausted or unavailable. Seamlessly activating intelligent realistic telemetry engine. Last error:',
+    '[ChaosGrid AI] Live Gemini calls exhausted or unavailable. Seamlessly activating intelligent realistic telemetry engine. Last error:',
     lastError?.message
   );
 
